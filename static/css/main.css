@@ -49,10 +49,10 @@ body {
     background: tomato;
     padding: 5px;
     margin: 5px;
-    width:25vw;
-    height:25vw;
-    max-width:150px;
-    max-height:150px;
+    width:20vw;
+    height:20vw;
+    max-width:200px;
+    max-height:200px;
     margin-top: 10px;
     color: white;
     font-weight: bold;
@@ -69,6 +69,14 @@ body {
 .number_center a {
     text-decoration: none;
     color: white;
+}
+.modra {
+    background-color: blue;
+    color: blue;
+}
+
+.hide-element {
+    visibility: hidden;
 }
 
 
