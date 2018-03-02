@@ -27,10 +27,7 @@ button {
     font-weight: bold;
     color:tomato;
 }
-.button-over {
-    display: flex;
-    justify-content: center;
-}
+
 .flex-container {
     padding: 0;
     margin: auto;
@@ -64,6 +61,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color:white;
     
 }
 
@@ -76,17 +74,34 @@ button {
     color: white;
 }
 .modra {
-    background-color: blue;
-    color: blue;
-}
-
-.hide-element {
-    visibility: hidden;
+    background-color: tomato;
+    color: tomato;
 }
 
 .zluta {
     background-color: orangered;
     color: white;
 }
+#button-over {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 10px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#modal-inner {
+    background-color: orange;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 200px;
+}
+
 
 
