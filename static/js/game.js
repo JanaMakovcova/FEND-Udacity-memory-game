@@ -1,36 +1,60 @@
 //array of card objects contain names of icons and if they are turn Up in game
-var cards = [
-    {iconName: 'icon-spring', turnUp: true},
-    {iconName: 'icon-tomcat', turnUp: true},
-    {iconName: 'icon-jquery', turnUp: true},
-    {iconName: 'icon-reactjs', turnUp: true},
-    {iconName: 'icon-javascript', turnUp: true},
-    {iconName: 'icon-html5', turnUp: true},
-    {iconName: 'icon-css3', turnUp: true},
-    {iconName: 'icon-java', turnUp: true},
-    {iconName: 'icon-mongodb', turnUp: true}
+let iconCardClass1 = '';
+let iconCardElement1;
+let gameOver;
+let numberOfMoves = 0;
+let cards = [
+    {iconName: 'icon-spring', found: false},
+    {iconName: 'icon-tomcat', found: false},
+    {iconName: 'icon-jquery', found: false},
+    {iconName: 'icon-reactjs', found: false},
+    {iconName: 'icon-javascript', found: false},
+    {iconName: 'icon-html5', found: false},
+    {iconName: 'icon-css3', found: false},
+    {iconName: 'icon-java', found: false},
     ];
 //for each card from cards array this loop create new icon and appends it to new created <li>
 // maked element with right class names is appended to projets flexbox
 
+function putCards(cards){
+    for (let i = 0; i < 2; i++) {
 
-for (let i = 0; i < 2; i++) {
-
-    cards.forEach(function (card) {
-        const newElement = document.createElement('i');
-        newElement.classList.add(card.iconName, 'number_center');
-        const newLiElement = document.createElement('li');
-        newLiElement.classList.add('flex-item');
-        newLiElement.appendChild(newElement);
-        document.getElementById("projects").appendChild(newLiElement);
-    });
+        cards.forEach(function (card) {
+            const newElement = document.createElement('i');
+            newElement.classList.add(card.iconName, 'number_center', 'card' + cards.indexOf(card));
+            const newLiElement = document.createElement('li');
+            newLiElement.classList.add('flex-item');
+            newLiElement.appendChild(newElement);
+            document.getElementById("projects").appendChild(newLiElement);
+        });
+    }
 }
-function turnCard(card) {
+
+
+function afterGameOver() {
+    const buttonStart = document.getElementById('start');
+    const buttonOver = document.createElement('button');
+    const allContent = document.getElementById('projects');
+    allContent.innerHTML = '';
+    const spanGameOver1 = document.createElement('p');
+    spanGameOver1.textContent = 'GAME OVER';
+    const spanGameOver2 = document.createElement('p');
+    spanGameOver2.textContent = "Number of moves: " + numberOfMoves;
+    const spanGameOver3 = document.createElement('p');
+    spanGameOver3.textContent = "Time: " + value;
+    buttonOver.appendChild(spanGameOver1);
+    buttonOver.appendChild(spanGameOver2);
+    buttonOver.appendChild(spanGameOver3);
+    //buttonOver.textContent = 'GAME OVER ' + "Moves " + numberOfMoves + " time " + value;
+    buttonOver.setAttribute('id', 'button-over');
+    //buttonStart.parentNode.insertBefore(buttonOver,buttonStart.nextSibling);
+    allContent.appendChild(buttonOver);
+    stop();
+
     
+    //allContent.appendChild(header);
+    //myimg.parentNode.insertBefore(new_node,myimg.nextSibling);
 }
-let iconCardClass1 = '';
-let iconCardClass2 = '';
-let iconCardElement1;
 
 function ifSame(clickedIcon, clickedIconElement){
 
@@ -42,15 +66,32 @@ function ifSame(clickedIcon, clickedIconElement){
     else {
         if (iconCardClass1 === clickedIcon) {
             console.log('jsou stejne');
+            numberOfMoves = numberOfMoves + 1;
+            console.log(numberOfMoves);
             //e.target.parentNode.classList.toggle('zluta');
             //document.getElementsByClassName(clickedIcon)[0].classList.toggle('zluta');
             clickedIconElement.parentNode.classList.toggle('zluta');
             iconCardElement1.parentNode.classList.toggle('zluta');
             iconCardClass1 = '';
             iconCardClass2 = '';
+            //get last character of third class of icon element
+            // set found for that card to true (as it is found)
+            let indexOfCard = iconCardElement1.classList[2].slice(-1);
+            cards[indexOfCard].found = true;
+            gameOver = true;
+            cards.forEach(function (card){
+                if (card.found === false) {
+                    gameOver = false;
+                }
+            })
+            if (gameOver)  {
+             afterGameOver();
+            }
         }
         else {
             console.log('nejsou stejne');
+            numberOfMoves = numberOfMoves + 1;
+            console.log(numberOfMoves);
             //e.target.parentNode.classList.toggle('modra');
             //document.getElementsByClassName(clickedIcon)[0].parentNode.classList.toggle('modra');
             //document.getElementsByClassName(clickedIcon)[1].parentNode.classList.toggle('modra');
@@ -86,7 +127,53 @@ function toBlue(e){
     }
 
 }
+function startGame() {
+    start();
+    iconCardClass1 = '';
+    gameOver = false;
+    numberOfMoves = 0;
+    cards.forEach(function (card){
+        card.found = false;
+    });
+    const allContent = document.getElementById('projects');
+    allContent.innerHTML = '';
+    const headButtonOver = document.getElementById('button-over');
+    //remove buttonOver if there is one (this button appears if game is over)
+    if (headButtonOver){
+        headButtonOver.parentNode.removeChild(headButtonOver);
+    }
+    putCards(cards);
+    document.getElementById("projects").addEventListener('click', toBlue, false);
+}
 
-document.getElementById("projects").addEventListener('click', toBlue, false);
+document.getElementById('start').addEventListener('click',startGame);
+
+function changeValue() {
+    var minutes = 0;
+    var seconds = ++value;
+    if (value >= 60) {
+        minutes = (seconds - seconds % 60)/60;
+        seconds = seconds % 60;
+    }
+    if (seconds < 10) {
+        document.getElementById("timer").innerHTML = minutes + " : 0" + seconds;
+    }
+    else {
+        document.getElementById("timer").innerHTML = minutes + " : " + seconds;
+
+    }
+}
+
+var timerInterval = null;
+
+function start() {
+    stop(); // stoping the previous counting (if any)
+    value = 0;
+    timerInterval = setInterval(changeValue, 1000);
+
+}
+var stop = function() {
+    clearInterval(timerInterval);
+}
 
 

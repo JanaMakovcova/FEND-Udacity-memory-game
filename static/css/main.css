@@ -4,7 +4,6 @@ body {
 .nav ul {
     display: flex;
     list-style: none;
-    justify-content: space-around;
     -webkit-padding-start: 0px;
     justify-content: flex-end;
     font-weight: bold;
@@ -18,7 +17,20 @@ body {
 .nav a:hover, .number_center a:hover  {
     color: black;
 }
-
+.header-game {
+    display:flex;
+    padding: 20px;
+    justify-content: space-around;
+}
+button {
+    font-size: 1em;
+    font-weight: bold;
+    color:tomato;
+}
+.button-over {
+    display: flex;
+    justify-content: center;
+}
 .flex-container {
     padding: 0;
     margin: auto;
@@ -41,10 +53,10 @@ body {
     background: tomato;
     padding: 5px;
     margin: 5px;
-    width:20vw;
-    height:20vw;
-    max-width:200px;
-    max-height:200px;
+    width:15vw;
+    height:15vw;
+    max-width:150px;
+    max-height:150px;
     margin-top: 10px;
     color: white;
     font-weight: bold;
@@ -52,6 +64,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }
 
 .number_center {
@@ -72,7 +85,8 @@ body {
 }
 
 .zluta {
-    background-color: yellow;
+    background-color: orangered;
+    color: white;
 }
 
 
