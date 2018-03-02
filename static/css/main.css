@@ -18,15 +18,7 @@ body {
 .nav a:hover, .number_center a:hover  {
     color: black;
 }
-.header_web {
-    display:flex;
-    width:100%;
-    font-size: 6em;
-    font-weight: bold;
-    color:tomato;
-    padding: 20px;
-    justify-content: center;
-}
+
 .flex-container {
     padding: 0;
     margin: auto;
@@ -77,6 +69,10 @@ body {
 
 .hide-element {
     visibility: hidden;
+}
+
+.zluta {
+    background-color: yellow;
 }
 
 
