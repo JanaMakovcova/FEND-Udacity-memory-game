@@ -4,33 +4,43 @@
 // if they are found already
 let iconCardClass1 = '';
 let iconCardElement1;
+let iconCardClass2 = '';
+let iconCardElement2;
 let gameOver;
 let numberOfMoves = 0;
 let cards = [
-    {iconName: 'icon-spring', found: false, turnUp: false},
-    {iconName: 'icon-tomcat', found: false, turnUp: false},
-    {iconName: 'icon-jquery', found: false, turnUp: false},
-    {iconName: 'icon-reactjs', found: false, turnUp: false},
-    {iconName: 'icon-javascript', found: false, turnUp: false},
-    {iconName: 'icon-html5', found: false, turnUp: false},
-    {iconName: 'icon-css3', found: false, turnUp: false},
-    {iconName: 'icon-java', found: false, turnUp: false},
+    {iconName: 'icon-spring', found: false, turnUp: false, number: "card0"},
+    {iconName: 'icon-tomcat', found: false, turnUp: false, number: "card1"},
+    {iconName: 'icon-jquery', found: false, turnUp: false, number: "card2"},
+    {iconName: 'icon-reactjs', found: false, turnUp: false, number: "card3"},
+    {iconName: 'icon-javascript', found: false, turnUp: false, number: "card4"},
+    {iconName: 'icon-html5', found: false, turnUp: false, number: "card5"},
+    {iconName: 'icon-css3', found: false, turnUp: false, number: "card6"},
+    {iconName: 'icon-java', found: false, turnUp: false, number: "card7"},
+    {iconName: 'icon-spring', found: false, turnUp: false, number: "card8"},
+    {iconName: 'icon-tomcat', found: false, turnUp: false, number: "card9"},
+    {iconName: 'icon-jquery', found: false, turnUp: false, number: "card10"},
+    {iconName: 'icon-reactjs', found: false, turnUp: false, number: "card11"},
+    {iconName: 'icon-javascript', found: false, turnUp: false, number: "card12"},
+    {iconName: 'icon-html5', found: false, turnUp: false, number: "card13"},
+    {iconName: 'icon-css3', found: false, turnUp: false, number: "card14"},
+    {iconName: 'icon-java', found: false, turnUp: false, number: "card15"}
     ];
 //for each card from cards array this loop create new icon and appends it to new created <li>
 // maked element with right class names is appended to game-board flexbox
 
 function putCards(cards){
-    for (let i = 0; i < 2; i++) {
+    //for (let i = 0; i < 2; i++) {
 
         cards.forEach(function (card) {
             const newElement = document.createElement('i');
-            newElement.classList.add(card.iconName, 'number_center', 'card' + cards.indexOf(card));
+            newElement.classList.add(card.iconName, 'number_center', card.number);
             const newLiElement = document.createElement('li');
             newLiElement.classList.add('flex-item', 'modra');
             newLiElement.appendChild(newElement);
             document.getElementById("game-board").appendChild(newLiElement);
         });
-    }
+    //}
 }
 function getTimeString(value){
     let minutes = 0;
@@ -99,50 +109,92 @@ function ifSame(clickedIcon, clickedIconElement){
     if (iconCardClass1 === '') {
         iconCardClass1 = clickedIcon;
         iconCardElement1 = clickedIconElement;
-    }
-    else {
-        if (iconCardClass1 === clickedIcon) {
+        console.log('prazdny prvni');
+    } else if (iconCardClass2 === '') {
+            iconCardClass2 = clickedIcon;
+            iconCardElement2 = clickedIconElement;
+            console.log('prazdny druhy');
+           //this will done only if iconCardClass1 or iconCardClass2 is ''
+            if (iconCardClass1 === iconCardClass2) {
             //same cards
             numberOfMoves = numberOfMoves + 1;
             const buttonMoves = document.getElementById('moves');
             buttonMoves.textContent = numberOfMoves;
 
-            clickedIconElement.parentNode.classList.toggle('zluta');
+            iconCardElement2.parentNode.classList.toggle('zluta');
             iconCardElement1.parentNode.classList.toggle('zluta');
-            iconCardClass1 = '';
-            iconCardClass2 = '';
+
             //get last character of third class of icon element
             // set found for that card to true (as it is found)
-            let indexOfCard = iconCardElement1.classList[2].slice(-1);
-            cards[indexOfCard].found = true;
+            //let indexOfCard1 = iconCardElement1.classList[2].slice(-1);
+            //let indexOfCard2 = clickedIconElement.classList[2].slice(-1);
+
+                let indexOfCard1 = 0;
+                cards.forEach(function (card){
+                    if (card.number === iconCardElement1.classList[2]) {
+                        indexOfCard1 = cards.indexOf(card);
+                    }
+                });
+                let indexOfCard2 = 0;
+                cards.forEach(function (card){
+                    if (card.number === iconCardElement2.classList[2]) {
+                        indexOfCard2 = cards.indexOf(card);
+                    }
+                });
+
+            cards[indexOfCard1].found = true;
+            cards[indexOfCard2].found = true;
             gameOver = true;
             cards.forEach(function (card){
                 if (card.found === false) {
                     gameOver = false;
                 }
-            })
+            });
             if (gameOver) {
              afterGameOver();
             }
-        }
-        else {
+                iconCardClass1 = '';
+                iconCardClass2 = '';
+
+        } else {
             // not same cards
             numberOfMoves = numberOfMoves + 1;
             const buttonMoves = document.getElementById('moves');
             buttonMoves.textContent = numberOfMoves;
-            
-            let indexOfCard1 = iconCardElement1.classList[2].slice(-1);
-            cards[indexOfCard1].turnUp = false;
-            let indexOfCard2 = clickedIconElement.classList[2].slice(-1);
-            cards[indexOfCard2].turnUp = false;
-            setTimeout(turnBack, 1000);
+
+                let indexOfCard1 = 0;
+                cards.forEach(function (card){
+                    if (card.number === iconCardElement1.classList[2]) {
+                        indexOfCard1 = cards.indexOf(card);
+                    }
+                });
+                let indexOfCard2 = 0;
+                cards.forEach(function (card){
+                    if (card.number === iconCardElement2.classList[2]) {
+                        indexOfCard2 = cards.indexOf(card);
+                    }
+                });
+                cards[indexOfCard1].turnUp = true;
+                cards[indexOfCard2].turnUp = true;
+            setTimeout(turnBack, 5000);
             function turnBack(){
-                clickedIconElement.parentNode.classList.toggle('modra');
+                iconCardElement2.parentNode.classList.toggle('modra');
                 iconCardElement1.parentNode.classList.toggle('modra');
+
+
+
+
+                //let indexOfCard1 = iconCardElement1.classList[2].slice(-1);
+                cards[indexOfCard1].turnUp = false;
+                //let indexOfCard2 = clickedIconElement.classList[2].slice(-1);
+                cards[indexOfCard2].turnUp = false;
+                iconCardClass1 = '';
+                iconCardClass2 = '';
             }
-            iconCardClass1 = '';
+
         }
     }
+    
 }
 
 function onClickCard(e){
@@ -153,11 +205,23 @@ function onClickCard(e){
             let clickedIcon = e.target.firstChild.classList[0];
             let clickedIconElement = e.target.firstChild;
 
-            let indexOfCard = clickedIconElement.classList[2].slice(-1);
-            if (!cards[indexOfCard].found){
+            //let indexOfCard = clickedIconElement.classList[2].slice(-1);
+            let indexOfCard = 0;
+            console.log(cards);
+            console.log(clickedIconElement.classList[2]);
+
+            cards.forEach(function (card){
+                if (card.number === clickedIconElement.classList[2]) {
+                  indexOfCard = cards.indexOf(card);
+            }
+            });
+
+            if ((!cards[indexOfCard].turnUp) && ((iconCardClass1 === '')||(iconCardClass2 === ''))){
+                console.log(iconCardClass1 + 'x', iconCardClass2 + 'y');
                 clickedIconElement.parentNode.classList.toggle('modra');
                 cards[indexOfCard].turnUp = true;
                 ifSame(clickedIcon, clickedIconElement);
+                console.log(indexOfCard);
             }
 
         }
@@ -166,12 +230,25 @@ function onClickCard(e){
             let clickedIcon = e.target.classList[0];
             let clickedIconElement = e.target;
             //print first class of clicked icon
-            let indexOfCard = clickedIconElement.classList[2].slice(-1);
-            if (!cards[indexOfCard].found){
+            //let indexOfCard = clickedIconElement.classList[2].slice(-1);
+
+            let indexOfCard = 0;
+            console.log(cards);
+            console.log(clickedIconElement.classList[2]);
+
+            cards.forEach(function (card){
+                if (card.number === clickedIconElement.classList[2]) {
+                    indexOfCard = cards.indexOf(card);
+                }
+            });
+
+            if ((!cards[indexOfCard].turnUp) && ((iconCardClass1 === '')||(iconCardClass2 === ''))){
+                console.log(iconCardClass1 + 'x', iconCardClass2 + 'y');
                 clickedIconElement.parentNode.classList.toggle('modra');
                 cards[indexOfCard].turnUp = true;
                 ifSame(clickedIcon, clickedIconElement);
             }
+            console.log(indexOfCard);
         }
     }
 
@@ -180,6 +257,7 @@ function startGame() {
     //start timer
     start();
     iconCardClass1 = '';
+    iconCardClass2 = '';
     gameOver = false;
     numberOfMoves = 0;
     const buttonMoves = document.getElementById('moves');
@@ -187,6 +265,7 @@ function startGame() {
     // non of cards is found
     cards.forEach(function (card){
         card.found = false;
+        card.turnUp = false;
     });
     //clean game-board
     const allContent = document.getElementById('game-board');
@@ -218,7 +297,7 @@ function start() {
     timerInterval = setInterval(changeValue, 1000);
 
 }
-var stop = function() {
+function stop() {
     clearInterval(timerInterval);
 }
 
