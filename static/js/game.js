@@ -29,6 +29,44 @@ let cards = [
 //for each card from cards array this loop create new icon and appends it to new created <li>
 // maked element with right class names is appended to game-board flexbox
 
+
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+function starsBegin (){
+    const newElement1 = document.createElement('i');
+    newElement1.classList.add('fas','fa-star');
+    const newElement2 = document.createElement('i');
+    newElement2.classList.add('fas','fa-star');
+    const newElement3 = document.createElement('i');
+    newElement3.classList.add('fas','fa-star');
+    document.getElementById('stars').appendChild(newElement1);
+    document.getElementById('stars').appendChild(newElement2);
+    document.getElementById('stars').appendChild(newElement3);
+}
+function removeStar(){
+    const stars = document.getElementById('stars');
+    if (stars.lastElementChild) {
+        stars.lastElementChild.parentNode.removeChild(stars.lastElementChild);
+    }
+}
+function removeAllStars(){
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 3; i++){
+        if (stars.lastElementChild) {
+            stars.lastElementChild.parentNode.removeChild(stars.lastElementChild);
+        }
+    }
+
+}
+
 function putCards(cards){
     //for (let i = 0; i < 2; i++) {
 
@@ -120,6 +158,12 @@ function ifSame(clickedIcon, clickedIconElement){
             numberOfMoves = numberOfMoves + 1;
             const buttonMoves = document.getElementById('moves');
             buttonMoves.textContent = numberOfMoves;
+            if (numberOfMoves === 12) {
+                removeStar();
+            }
+            if (numberOfMoves === 20) {
+                    removeStar();
+            }
 
             iconCardElement2.parentNode.classList.toggle('zluta');
             iconCardElement1.parentNode.classList.toggle('zluta');
@@ -161,6 +205,12 @@ function ifSame(clickedIcon, clickedIconElement){
             numberOfMoves = numberOfMoves + 1;
             const buttonMoves = document.getElementById('moves');
             buttonMoves.textContent = numberOfMoves;
+                if (numberOfMoves === 12) {
+                    removeStar();
+                }
+                if (numberOfMoves === 20) {
+                    removeStar();
+                }
 
                 let indexOfCard1 = 0;
                 cards.forEach(function (card){
@@ -176,7 +226,7 @@ function ifSame(clickedIcon, clickedIconElement){
                 });
                 cards[indexOfCard1].turnUp = true;
                 cards[indexOfCard2].turnUp = true;
-            setTimeout(turnBack, 5000);
+            setTimeout(turnBack, 1000);
             function turnBack(){
                 iconCardElement2.parentNode.classList.toggle('modra');
                 iconCardElement1.parentNode.classList.toggle('modra');
@@ -255,6 +305,8 @@ function onClickCard(e){
 }
 function startGame() {
     //start timer
+    removeAllStars();
+    starsBegin();
     start();
     iconCardClass1 = '';
     iconCardClass2 = '';
@@ -276,6 +328,7 @@ function startGame() {
         headButtonOver.parentNode.removeChild(headButtonOver);
     }
     //put cards on game-board
+    shuffleArray(cards);
     putCards(cards);
     document.getElementById("game-board").addEventListener('click', onClickCard, false);
 }

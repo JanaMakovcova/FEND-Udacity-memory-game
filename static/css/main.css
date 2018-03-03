@@ -53,8 +53,6 @@ button a {
     -webkit-flex-flow: row wrap;
     justify-content: center;
     align-items: flex-start;
-
-
 }
 
 .flex-item {
@@ -129,6 +127,11 @@ button a {
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
+}
+#stars {
+    color:tomato;
+    padding: 1em;
+    margin:0;
 }
 .flex-game {
     display: flex;
