@@ -1,5 +1,7 @@
 body {
     font-family: serif;
+    background-color: beige;
+    
 }
 .nav ul {
     display: flex;
@@ -8,6 +10,7 @@ body {
     justify-content: flex-end;
     font-weight: bold;
     border-bottom: 1px solid tomato;
+
 }
 .nav a {
     text-decoration: none;
@@ -18,14 +21,22 @@ body {
     color: black;
 }
 .header-game {
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
-    padding: 20px;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    font-size: 2vw;
+    margin: auto;
 }
 button {
-    font-size: 1em;
+    font-size: 2vw;
     font-weight: bold;
     color:tomato;
+    margin: 10px;
+}
+button a {
+    padding: 1.5em;
 }
 
 .flex-container {
@@ -42,8 +53,8 @@ button {
     -webkit-flex-flow: row wrap;
     justify-content: center;
     align-items: flex-start;
-    
-    
+
+
 }
 
 .flex-item {
@@ -57,17 +68,32 @@ button {
     margin-top: 10px;
     color: white;
     font-weight: bold;
+    -ms-flex-item-align: start;
     align-self: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     color:white;
-    
+
+
+    border-width: thin;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 15px;
+
 }
 
 .number_center {
     align-self: center;
-    font-size: 6vw;
+    font-size: 7vw;
+
 }
 .number_center a {
     text-decoration: none;
@@ -76,11 +102,13 @@ button {
 .modra {
     background-color: tomato;
     color: tomato;
+    text-shadow: none;
 }
 
 .zluta {
     background-color: orangered;
     color: white;
+    text-shadow: 2px 2px grey;
 }
 #button-over {
     display: none; /* Hidden by default */
@@ -100,8 +128,107 @@ button {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 200px;
+    width: 50%;
+}
+.flex-game {
+    display: flex;
+    flex-direction: column;
+    
 }
 
+
+.border-around {
+    border-width: thin;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 15px;
+}
+.bordershadow{
+    border-width: thin;
+    border-style: solid;
+    width: 300px;
+    border-color: grey;
+    box-shadow: 10px 10px 5px grey;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+@media screen and (min-width: 1000px) {
+    .content {
+        width: 820px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    .header-game {
+        width: 150px;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: auto;
+        order: 1;
+        margin-top: 0;
+    }
+    .flex-game {
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+}
+@media screen and (min-width: 730px) and (max-width: 999px) {
+    .content {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .flex-game {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .header-game {
+        width: 80%;
+        align-self: center;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 729px) {
+    .content {
+        width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .flex-game {
+        justify-content: center;
+        flex-direction: column;
+
+    }
+    .header-game {
+        width: 80%;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .flex-game {
+        justify-content: center;
+        flex-direction: column;
+
+    }
+    .header-game {
+        width: 80%;
+        align-self: center;
+    }
+
+    button {
+        font-size: 2em;
+    }
+    .nav ul {
+        justify-content: space-between;
+    }
+
+}
 
 
