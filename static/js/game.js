@@ -69,6 +69,8 @@ function removeAllStars(){
     }
 
 }
+
+
 function makeGameBoard(){
     //add button with number of moves
     const buttonMoves = document.getElementById('moves');
@@ -145,6 +147,29 @@ function afterGameOver() {
     const spanGameOver3 = document.createElement('p');
     const buttonOk = document.createElement('button');
 
+    //adding stars to popup button
+    const newDivStar = document.createElement('div');
+    const newElement1 = document.createElement('i');
+    const newElement2 = document.createElement('i');
+    const newElement3 = document.createElement('i');
+    if (numberOfMoves > 20) {
+        newElement1.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement1);
+    } else if ((numberOfMoves > 12)&&(numberOfMoves <= 20)) {
+        newElement1.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement1);
+        newElement2.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement2);
+    } else {
+        newElement1.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement1);
+        newElement2.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement2);
+        newElement3.classList.add('fas','fa-star');
+        newDivStar.appendChild(newElement3);
+    }
+    newDivStar.setAttribute('class', 'stars');
+    
     divOver.setAttribute('id', 'modal-inner');
     buttonOver.appendChild(divOver);
     spanGameOver1.textContent = 'GAME OVER';
@@ -156,8 +181,10 @@ function afterGameOver() {
     divOver.appendChild(spanGameOver2);
     divOver.appendChild(spanGameOver3);
     divOver.appendChild(buttonOk);
+    divOver.appendChild(newDivStar);
     buttonOver.setAttribute('id', 'button-over');
     allContent.appendChild(buttonOver);
+
     buttonOver.style.display = "block";
     //stop timer
     stop();
@@ -171,6 +198,11 @@ function afterGameOver() {
     }
     buttonOk.addEventListener('click',closePop);
     window.addEventListener('click',closePop);
+
+
+
+
+
 
 }
 //this function compares two cards,

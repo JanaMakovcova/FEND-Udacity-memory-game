@@ -133,13 +133,19 @@ button a {
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
+
+    border-width: thin;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 15px;
 }
 
-#stars {
+#stars, .stars {
     color:tomato;
     padding: 1em;
     margin:0;
 }
+
 
 .flex-game {
     display: -webkit-box;
