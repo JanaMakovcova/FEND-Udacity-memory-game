@@ -1,8 +1,8 @@
 body {
     font-family: serif;
     background-color: beige;
-    
 }
+
 .nav ul {
     display: flex;
     list-style: none;
@@ -10,16 +10,18 @@ body {
     justify-content: flex-end;
     font-weight: bold;
     border-bottom: 1px solid tomato;
-
 }
+
 .nav a {
     text-decoration: none;
     color: tomato;
     padding: 1.5em;
 }
-.nav a:hover, .number_center a:hover  {
+
+.nav a:hover, .number_center a:hover {
     color: black;
 }
+
 .header-game {
     display:-webkit-box;
     display:-ms-flexbox;
@@ -29,12 +31,14 @@ body {
     font-size: 2vw;
     margin: auto;
 }
+
 button {
     font-size: 2vw;
     font-weight: bold;
     color:tomato;
     margin: 10px;
 }
+
 button a {
     padding: 1.5em;
 }
@@ -71,6 +75,7 @@ button a {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -80,34 +85,34 @@ button a {
     justify-content: center;
     color:white;
 
-
     border-width: thin;
     border-style: solid;
     border-color: grey;
     border-radius: 15px;
-
 }
 
 .number_center {
     align-self: center;
     font-size: 7vw;
-
 }
+
 .number_center a {
     text-decoration: none;
     color: white;
 }
-.modra {
+
+.color-turndown {
     background-color: tomato;
     color: tomato;
     text-shadow: none;
 }
 
-.zluta {
+.color-found {
     background-color: orangered;
     color: white;
     text-shadow: 2px 2px grey;
 }
+
 #button-over {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -121,6 +126,7 @@ button a {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
 #modal-inner {
     background-color: orange;
     margin: auto;
@@ -128,17 +134,22 @@ button a {
     border: 1px solid #888;
     width: 50%;
 }
+
 #stars {
     color:tomato;
     padding: 1em;
     margin:0;
 }
-.flex-game {
-    display: flex;
-    flex-direction: column;
-    
-}
 
+.flex-game {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
 
 .border-around {
     border-width: thin;
@@ -172,7 +183,12 @@ button a {
         margin-top: 0;
     }
     .flex-game {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
     }
 
@@ -184,11 +200,18 @@ button a {
         margin-right: auto;
     }
     .flex-game {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
     .header-game {
         width: 80%;
+        -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
         align-self: center;
     }
 }
@@ -199,12 +222,19 @@ button a {
         margin-right: auto;
     }
     .flex-game {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
 
     }
     .header-game {
         width: 80%;
+        -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
         align-self: center;
     }
 }
@@ -216,12 +246,19 @@ button a {
         margin-right: auto;
     }
     .flex-game {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
 
     }
     .header-game {
         width: 80%;
+        -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
         align-self: center;
     }
 
@@ -229,6 +266,8 @@ button a {
         font-size: 2em;
     }
     .nav ul {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
     }
 
